@@ -103,7 +103,7 @@ $ poetry install
 $ python chaquopy_project_maker/main.py
 ```
 
-Or you can use pyinstaller to package this project into an executable file. You check the 
+Or you can use pyinstaller to package this project into an executable file. You can check the 
 ChaquopyProjectMaker_win.spec file for reference.
 
 ---
