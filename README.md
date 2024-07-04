@@ -14,7 +14,7 @@ This tool uses cookiecutter to do the project creation from a template, and it p
 adjust the configs.
 
 I made a default cookiecutter template, and it is distributed as a git submodule, and you can find it 
-[here]()
+[here](https://github.com/zimolab/HelloChaquopy)
 
 You can also make your own template from the default one. Just don't forget to including all the following configs in 
 your template's `cookiecutter.json`. 
@@ -89,21 +89,21 @@ Now I provide a pre-built windows executable file, you can download it from the 
 For other platforms, you clone the repository
 
 ```commandline
-git clone https://github.com/Chaquo/project-maker.git
+$ git clone --recurse-submodules https://github.com/zimolab/chaquopy-project-maker.git
 ```
 
 install the dependencies:
 ```commandline
-poetry install
+$ cd chaquopy-project-maker
+$ poetry install
 ```
 
-(activate the virtual environment and) run the main.py file:
+(activate the virtual environment and) run the `main.py` file:
 ```commandline
-cd chaquopy-project-maker
-python chaquopy_project_maker/main.py
+$ python chaquopy_project_maker/main.py
 ```
 
 Or you can use pyinstaller to package this project into an executable file. You check the 
-ChaquopyProjectMaker_win.spec file.
+ChaquopyProjectMaker_win.spec file for reference.
 
 ---
