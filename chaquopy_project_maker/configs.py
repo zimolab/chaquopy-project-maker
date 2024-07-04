@@ -8,6 +8,8 @@ from function2widgets import (
     ComboBoxArgs,
     ListEditor,
     ListEditorArgs,
+    DictEditor,
+    DictEditorArgs,
 )
 from function2widgets import CheckBoxArgs
 from function2widgets import DirPathEdit
@@ -106,7 +108,7 @@ CONFIGS = {
             parameter_name="AS-IS",
             label=tr("Output Directory"),
             description=tr(
-                "Select output directory. Leave it blank to use the current directory."
+                "Select output directory. If you leave it blank the project will be created in the current directory."
             ),
             default="",
         ),
@@ -259,7 +261,9 @@ CONFIGS = {
         "widget_args": FilePathEditArgs(
             parameter_name="AS-IS",
             label=tr("Python Command"),
-            description=tr("Input the python command or select the python executable."),
+            description=tr(
+                "Input the python command or select the python executable. This is used compile you python sourcecode."
+            ),
             default="",
         ),
     },
@@ -295,7 +299,7 @@ CONFIGS = {
         "widget_args": LineEditArgs(
             parameter_name="AS-IS",
             label=tr("Extra Python Source Set Package"),
-            default_value_description=tr("No extra python source set."),
+            default_value_description=tr("No extra python source set"),
             default=None,
         ),
     },
@@ -304,8 +308,8 @@ CONFIGS = {
         "widget_args": LineEditArgs(
             parameter_name="AS-IS",
             label=tr("Extra Python Source Set Directory"),
-            description=tr("Input the extra python source set directory."),
-            default_value_description=tr("No extra python source set."),
+            description=tr("Input the extra python source set directory"),
+            default_value_description=tr("No extra python source set"),
             default=None,
         ),
     },
@@ -315,10 +319,10 @@ CONFIGS = {
             parameter_name="AS-IS",
             label=tr("Extra Python Dependencies"),
             description=tr(
-                "Add extra python dependencies. These dependencies will be installed by pip."
+                "Add extra python dependencies. These dependencies will be installed by pip"
             ),
             display_current_value=False,
-            default_value_description=tr("No extra python dependencies."),
+            default_value_description=tr("No extra python dependencies"),
             default=None,
         ),
     },
@@ -327,9 +331,9 @@ CONFIGS = {
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
             label=tr("Extra pip Index URLS"),
-            description=tr("Add extra pip index urls."),
+            description=tr("Add extra pip index urls"),
             display_current_value=False,
-            default_value_description=tr("No extra pip index urls."),
+            default_value_description=tr("No extra pip index urls"),
             default=None,
         ),
     },
@@ -340,7 +344,7 @@ CONFIGS = {
             label=tr("Python Static Proxy Classes"),
             description=tr("Add python static proxy classes."),
             display_current_value=False,
-            default_value_description=tr("No python static proxy classes."),
+            default_value_description=tr("No python static proxy classes"),
             default=None,
         ),
     },
@@ -353,7 +357,7 @@ CONFIGS = {
                 "Add extra plugin maven repository urls to settings.gradle script"
             ),
             display_current_value=False,
-            default_value_description=tr("No extra plugin maven repositories."),
+            default_value_description=tr("No extra plugin maven repositories"),
             default=[],
             hide_default_value_widget=False,
         ),
@@ -367,8 +371,20 @@ CONFIGS = {
                 "Add extra dependency maven repository urls to settings.gradle script"
             ),
             display_current_value=False,
-            default_value_description=tr("No extra dependency maven repositories."),
+            default_value_description=tr("No extra dependency maven repositories"),
             default=[],
+            hide_default_value_widget=False,
+        ),
+    },
+    "extra_configs": {
+        "widget_class": DictEditor.__name__,
+        "widget_args": DictEditorArgs(
+            parameter_name="AS-IS",
+            label=tr("Extra Configs"),
+            description=tr("Add extra configs can be used in cookiecutter template"),
+            display_current_value=False,
+            default_value_description=tr("No extra configs"),
+            default=None,
             hide_default_value_widget=False,
         ),
     },
