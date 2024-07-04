@@ -1,0 +1,3 @@
+[submodule "chaquopy_project_maker/templates/HelloChaquopy"]
+	path = chaquopy_project_maker/templates/HelloChaquopy
+	url = https://github.com/zimolab/HelloChaquopy.git
