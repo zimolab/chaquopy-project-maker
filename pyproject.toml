@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "chaquopy-project-maker"
+version = "0.1.0"
+description = ""
+authors = ["zimolab <zimolab@aliyun.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+cookiecutter = "^2.6.0"
+pyguiadapter = "^0.3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
