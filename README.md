@@ -13,8 +13,8 @@ The project configuration process is a little bit complicated and tedious, so I 
 This tool uses cookiecutter to do the project creation from a template, and it provides a simple gui to help user to 
 adjust the configs.
 
-I made a default cookiecutter template, and it is distributed as a git submodule, and you can find it 
-[here](https://github.com/zimolab/HelloChaquopy)
+I made a default cookiecutter template, and it is distributed as a git submodule, and you can find it
+[here](https://github.com/zimolab/HelloChaquopy).
 
 You can also make your own template from the default one. Just don't forget to including all the following configs in 
 your template's `cookiecutter.json`. 
@@ -104,6 +104,6 @@ $ python chaquopy_project_maker/main.py
 ```
 
 Or you can use pyinstaller to package this project into an executable file. You can check the 
-ChaquopyProjectMaker_win.spec file for reference.
+`ChaquopyProjectMaker.spec` for reference.
 
 ---
