@@ -1,4 +1,5 @@
-from typing import Literal, List
+import os.path
+from typing import Literal, List, Dict, Any
 
 from PyQt6.QtWidgets import QApplication
 from cookiecutter.main import cookiecutter
@@ -77,6 +78,7 @@ def make_project(
     python_dependencies: List[str],
     pip_extra_index_urls: List[str],
     python_static_proxies: List[str],
+    extra_configs: Dict[str, Any],
 ):
     project_template = project_template or ""
     project_template = project_template.strip()
@@ -107,6 +109,7 @@ def make_project(
         }
     extra_plugin_maven_repositories = extra_plugin_maven_repositories or None
     extra_dependency_maven_repositories = extra_dependency_maven_repositories or None
+    extra_configs = extra_configs or None
 
     user_configs = get_user_configs(
         project_name=project_name,
@@ -136,12 +139,30 @@ def make_project(
         _python_dependencies=python_dependencies,
         _pip_extra_index_urls=pip_extra_index_urls,
         _python_static_proxies=python_static_proxies,
+        _extra_configs=extra_configs,
     )
-    print(user_configs)
-
-    cookiecutter(
-        project_template,
-        no_input=True,
-        output_dir=output_dir,
-        extra_context=user_configs,
+    ulogging.info(
+        tr(
+            f"Start to generate the project '{project_name}' in '{os.path.normpath(os.path.abspath(output_dir))}'"
+        )
     )
+    try:
+        cookiecutter(
+            project_template,
+            output_dir=output_dir,
+            no_input=True,
+            extra_context=user_configs,
+        )
+    except BaseException as e:
+        ulogging.critical(tr(f"Failed to generate the project!"))
+        upopup.critical(
+            message=tr(f"An error occurred! Failed to generate the project!\n") + f"{e}"
+        )
+    else:
+        ulogging.info(tr("The project has been generated!"))
+        upopup.information(
+            message=tr(
+                f"The project has been generated. You can open it in Android Studio now."
+            ),
+            title=tr("Success"),
+        )
