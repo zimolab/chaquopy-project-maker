@@ -1,6 +1,7 @@
 from typing import Literal, List
 
 from PyQt6.QtWidgets import QApplication
+from cookiecutter.main import cookiecutter
 from pyguiadapter.interact import ulogging, upopup
 
 from chaquopy_project_maker import utils
@@ -138,9 +139,9 @@ def make_project(
     )
     print(user_configs)
 
-    # cookiecutter(
-    #     project_template,
-    #     no_input=True,
-    #     output_dir=output_dir,
-    #     extra_context=user_configs,
-    # )
+    cookiecutter(
+        project_template,
+        no_input=True,
+        output_dir=output_dir,
+        extra_context=user_configs,
+    )
