@@ -6,10 +6,13 @@ authors = ["zimolab <zimolab@aliyun.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.12, <3.13"
 cookiecutter = "^2.6.0"
 pyguiadapter = "^0.3.11"
 
+
+[tool.poetry.group.dev.dependencies]
+pyinstaller = "^6.8.0"
 
 [build-system]
 requires = ["poetry-core"]
