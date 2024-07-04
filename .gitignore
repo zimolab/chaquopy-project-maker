@@ -22,3 +22,5 @@ dev/
 vscode/
 .idea/
 tmp/
+dist/
+build/
