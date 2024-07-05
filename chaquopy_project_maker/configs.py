@@ -78,17 +78,6 @@ PYC_OPTIONS = [
     "True",
 ]
 
-EXTRA_PLUGIN_MAVEN_REPOS_ALIYUN = [
-    "https://maven.aliyun.com/repository/google",
-    "https://maven.aliyun.com/repository/central",
-    "https://maven.aliyun.com/repository/gradle-plugin",
-]
-
-EXTRA_DEP_MAVEN_REPOS_ALIYUN = [
-    "https://maven.aliyun.com/repository/google",
-    "https://maven.aliyun.com/repository/central",
-]
-
 CONFIGS = {
     "project_template": {
         "widget_class": DirPathEdit.__name__,
@@ -96,10 +85,13 @@ CONFIGS = {
             parameter_name="AS-IS",
             label=tr("Project Template Path"),
             description=tr(
-                "Select project template directory or you can input the zip file path or the remote repository url of "
-                " the template. If you want to use  the default template, please leave it blank."
+                "Select project template directory or you can input the path of a template (for example, a git repo,"
+                "a zip file, and so on). If you want to use the "
+                "<a href='https://github.com/zimolab/HelloChaquopy'>default template</a>, you can leave it blank."
             ),
             default="",
+            default_value_description=tr("Use the default template"),
+            hide_default_value_widget=False,
         ),
     },
     "output_dir": {
@@ -108,9 +100,12 @@ CONFIGS = {
             parameter_name="AS-IS",
             label=tr("Output Directory"),
             description=tr(
-                "Select output directory. If you leave it blank the project will be created in the current directory."
+                "Select the output directory. "
+                "If you leave it blank, the project will be created in the current directory."
             ),
             default="",
+            hide_default_value_widget=False,
+            default_value_description=tr("Use the current directory"),
         ),
     },
     "project_name": {
@@ -160,6 +155,7 @@ CONFIGS = {
             label="Add arm64-v8a ABI",
             description="Add arm64-v8a ABI filter",
             default=True,
+            text=tr("Enabled"),
         ),
     },
     "abi_armeabi_v7a": {
@@ -169,6 +165,7 @@ CONFIGS = {
             label="Add arm64-v8a ABI",
             description="Add armeabi-v7a ABI filter",
             default=True,
+            text=tr("Enabled"),
         ),
     },
     "abi_x86": {
@@ -178,6 +175,7 @@ CONFIGS = {
             label="Add arm64-v8a ABI",
             description="Add x86 ABI filter",
             default=True,
+            text=tr("Enabled"),
         ),
     },
     "abi_x86_64": {
@@ -187,6 +185,7 @@ CONFIGS = {
             label="Add arm64-v8a ABI",
             description="Add x86_64 ABI filter",
             default=True,
+            text=tr("Enabled"),
         ),
     },
     "agp_version": {
@@ -262,7 +261,8 @@ CONFIGS = {
             parameter_name="AS-IS",
             label=tr("Python Command"),
             description=tr(
-                "Input the python command or select the python executable. This is used compile you python sourcecode."
+                "Input the python command or select the python executable which will be used by Chaquopy plugin to "
+                "compile your python code into bytecode (*.pyc) during the build time."
             ),
             default="",
         ),
@@ -271,7 +271,7 @@ CONFIGS = {
         "widget_class": ComboBox.__name__,
         "widget_args": ComboBoxArgs(
             parameter_name="AS-IS",
-            label=tr("Compile Python Sourcecode"),
+            label=tr("Compile src (pyc)"),
             items=PYC_OPTIONS,
             default=PYC_OPTIONS[0],
         ),
@@ -280,7 +280,7 @@ CONFIGS = {
         "widget_class": ComboBox.__name__,
         "widget_args": ComboBoxArgs(
             parameter_name="AS-IS",
-            label=tr("Compile pip Sourcecode"),
+            label=tr("Compile pip (pyc)"),
             items=PYC_OPTIONS,
             default=PYC_OPTIONS[0],
         ),
@@ -289,7 +289,7 @@ CONFIGS = {
         "widget_class": ComboBox.__name__,
         "widget_args": ComboBoxArgs(
             parameter_name="AS-IS",
-            label=tr("Compile Python stdlib Sourcecode"),
+            label=tr("Compile stdlib(pyc)"),
             items=PYC_OPTIONS,
             default=PYC_OPTIONS[0],
         ),
@@ -317,13 +317,14 @@ CONFIGS = {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Python Dependencies"),
+            label=tr("Python Dependencies"),
             description=tr(
-                "Add extra python dependencies. These dependencies will be installed by pip"
+                "Add python dependencies. The dependencies will be installed by pip"
             ),
             display_current_value=False,
-            default_value_description=tr("No extra python dependencies"),
+            default_value_description=tr("No python dependencies"),
             default=None,
+            window_title=tr("Python Dependencies"),
         ),
     },
     "pip_extra_index_urls": {
@@ -335,6 +336,7 @@ CONFIGS = {
             display_current_value=False,
             default_value_description=tr("No extra pip index urls"),
             default=None,
+            window_title=tr("Extra pip Index URLS"),
         ),
     },
     "python_static_proxies": {
@@ -346,13 +348,14 @@ CONFIGS = {
             display_current_value=False,
             default_value_description=tr("No python static proxy classes"),
             default=None,
+            window_title=tr("Python Static Proxy Classes"),
         ),
     },
     "extra_plugin_maven_repositories": {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Plugin Maven Repositories"),
+            label=tr("Extra Maven Repositories (Plugin)"),
             description=tr(
                 "Add extra plugin maven repository urls to settings.gradle script"
             ),
@@ -360,13 +363,14 @@ CONFIGS = {
             default_value_description=tr("No extra plugin maven repositories"),
             default=[],
             hide_default_value_widget=False,
+            window_title=tr("Extra Dependency Repositories (Plugin)"),
         ),
     },
     "extra_dependency_maven_repositories": {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Dependency Maven Repositories"),
+            label=tr("Extra Maven Repositories (Dependency)"),
             description=tr(
                 "Add extra dependency maven repository urls to settings.gradle script"
             ),
@@ -374,6 +378,7 @@ CONFIGS = {
             default_value_description=tr("No extra dependency maven repositories"),
             default=[],
             hide_default_value_widget=False,
+            window_title=tr("Extra Dependency Repositories (Dependency)"),
         ),
     },
     "extra_configs": {
@@ -386,6 +391,7 @@ CONFIGS = {
             default_value_description=tr("No extra configs"),
             default=None,
             hide_default_value_widget=False,
+            window_title=tr("Extra Configs"),
         ),
     },
 }
