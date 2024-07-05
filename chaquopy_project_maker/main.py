@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QApplication
 from pyguiadapter import GUIAdapter, DocumentFormat
 from pyguiadapter.ui import ActionItem, ExecutionContext
-from pyguiadapter.interact.upopup import show_about_popup
+from pyguiadapter.interact import upopup
+
 
 from chaquopy_project_maker.core import make_project
 from chaquopy_project_maker.configs import CONFIGS
@@ -62,8 +63,17 @@ def on_add_aliyun_repositories(ctx: ExecutionContext):
         )
     except BaseException as e:
         print(e)
+        ctx.logging_fatal(tr(f"Failed to add aliyun repositories!"))
         ctx.logging_fatal(f"{e}")
+        upopup.critical(tr("Failed to add aliyun repositories!\n"), title=tr("Error"))
         return
+    else:
+        msg = tr(
+            "Aliyun repositories has been added to extra_plugin_maven_repositories and "
+            "extra_dependency_maven_repositories!"
+        )
+        ctx.logging_info(msg)
+        upopup.information(msg, title=tr("Success"))
 
 
 MENUS = {
@@ -74,7 +84,7 @@ MENUS = {
         ),
         "about": ActionItem(
             text=tr("About"),
-            callback=lambda ctx: show_about_popup(
+            callback=lambda ctx: upopup.show_about_popup(
                 app_name=APP_NAME,
                 app_description=tr(
                     "Chaquopy Project Maker is a GUI tool to help you create a Chaquopy-integrated Android app project"
