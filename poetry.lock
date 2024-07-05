@@ -46,13 +46,13 @@ chardet = ">=3.0.2"
 
 [[package]]
 name = "certifi"
-version = "2024.6.2"
+version = "2024.7.4"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "certifi-2024.6.2-py3-none-any.whl", hash = "sha256:ddc6c8ce995e6987e7faf5e3f1b02b302836a0e5d98ece18392cb1a36c72ad56"},
-    {file = "certifi-2024.6.2.tar.gz", hash = "sha256:3cd43f1c6fa7dedc5899d69d3ad0398fd018ad1a17fba83ddaf78aa46c747516"},
+    {file = "certifi-2024.7.4-py3-none-any.whl", hash = "sha256:c198e21b1289c2ab85ee4e67bb4b4ef3ead0892059901a8d5b622f24a1101e90"},
+    {file = "certifi-2024.7.4.tar.gz", hash = "sha256:5a1e7645bc0ec61a09e26c36f6106dd4cf40c6db3a1fb6352b0244e7fb057c7b"},
 ]
 
 [[package]]
@@ -443,13 +443,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyguiadapter"
-version = "0.3.11"
+version = "0.3.12"
 description = "turn (almost) any python functions into a gui in a few lines of code"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pyguiadapter-0.3.11-py3-none-any.whl", hash = "sha256:71c763afef398569197832dcc0b1f8c2cf2256b9bcc2d7ce5b4effcc914a410c"},
-    {file = "pyguiadapter-0.3.11.tar.gz", hash = "sha256:dc5fc26eedcc1001a9c536be4f4022905b1a624a3762410ed59f09ba9b94ce5d"},
+    {file = "pyguiadapter-0.3.12-py3-none-any.whl", hash = "sha256:3785b9ad488d2a8384ec6fe45722e983828f466e0154912daee037b4baee8ae3"},
+    {file = "pyguiadapter-0.3.12.tar.gz", hash = "sha256:f8e418795eb6a54a9a6c9caf2be931bb118daf6fdbc169dea5f6f36d641e3975"},
 ]
 
 [package.dependencies]
@@ -802,4 +802,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12, <3.13"
-content-hash = "f708affab5564eb194b6309abe741d37de029e7790b6760e1b43c3bfd132c301"
+content-hash = "44ce6673be7dc52cd9afdc0f3b34a88ccc3f3464b5edc8de1820350b3572c5df"

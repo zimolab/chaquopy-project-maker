@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12, <3.13"
 cookiecutter = "^2.6.0"
-pyguiadapter = "^0.3.11"
+pyguiadapter = ">=0.3.12"
 
 
 [tool.poetry.group.dev.dependencies]
