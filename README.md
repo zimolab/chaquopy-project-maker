@@ -65,10 +65,11 @@ your template's `cookiecutter.json`.
   "_pip_extra_index_urls": [],
   "_python_static_proxies": [],
   "_python_extract_packages": [],
-
   "_extra_plugin_maven_repositories": [],
   "_extra_dependency_maven_repositories": [],
-  "_copy_without_render": [
+   "_extra_configs": {},
+  
+    "_copy_without_render": [
     "gradlew",
     "gradlew.bat",
     "gradle-wrapper.jar"
@@ -77,7 +78,17 @@ your template's `cookiecutter.json`.
 ```
 
 
-Note: If you don't want to use the GUI, you can also use the default template like a normal cookiecutter template. 
+Note: 
+
+- If you don't want to use the GUI, you can also use the default template like a normal cookiecutter template. 
+- The following configs can only be edited in the gui, the cookiecutter cli will ignore them:
+  - _python_dependencies, 
+  - _pip_extra_index_urls, 
+  - _python_static_proxies, 
+  - _python_extract_packages,
+  - _extra_dependency_maven_repositories, 
+  - _extra_dependency_maven_repositories, 
+  - _extra_configs
 
 
 ---
