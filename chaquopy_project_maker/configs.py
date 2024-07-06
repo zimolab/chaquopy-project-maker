@@ -162,7 +162,7 @@ CONFIGS = {
         "widget_class": CheckBox.__name__,
         "widget_args": CheckBoxArgs(
             parameter_name="AS-IS",
-            label="Add arm64-v8a ABI",
+            label="Add armeabi-v7a ABI",
             description="Add armeabi-v7a ABI filter",
             default=True,
             text=tr("Enabled"),
@@ -172,7 +172,7 @@ CONFIGS = {
         "widget_class": CheckBox.__name__,
         "widget_args": CheckBoxArgs(
             parameter_name="AS-IS",
-            label="Add arm64-v8a ABI",
+            label="Add x86 ABI",
             description="Add x86 ABI filter",
             default=True,
             text=tr("Enabled"),
@@ -182,7 +182,7 @@ CONFIGS = {
         "widget_class": CheckBox.__name__,
         "widget_args": CheckBoxArgs(
             parameter_name="AS-IS",
-            label="Add arm64-v8a ABI",
+            label="Add x86_64 ABI",
             description="Add x86_64 ABI filter",
             default=True,
             text=tr("Enabled"),
@@ -313,18 +313,15 @@ CONFIGS = {
             default=None,
         ),
     },
-    "python_dependencies": {
-        "widget_class": ListEditor.__name__,
-        "widget_args": ListEditorArgs(
+    "pip_index_url": {
+        "widget_class": LineEdit.__name__,
+        "widget_args": LineEditArgs(
             parameter_name="AS-IS",
-            label=tr("Python Dependencies"),
-            description=tr(
-                "Add python dependencies. The dependencies will be installed by pip"
-            ),
-            display_current_value=False,
-            default_value_description=tr("No python dependencies"),
-            default=None,
-            window_title=tr("Python Dependencies"),
+            label=tr("Pip Index URL"),
+            description=tr("Input the pip index url"),
+            default_value_description=tr("Use default pip index url"),
+            default="",
+            hide_default_value_widget=False,
         ),
     },
     "pip_extra_index_urls": {
@@ -335,15 +332,29 @@ CONFIGS = {
             description=tr("Add extra pip index urls"),
             display_current_value=False,
             default_value_description=tr("No extra pip index urls"),
-            default=None,
+            default=[],
+            hide_default_value_widget=False,
             window_title=tr("Extra pip Index URLS"),
         ),
     },
-    "python_static_proxies": {
+    "pip_requirements": {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Python Static Proxy Classes"),
+            label=tr("Pip Requirements"),
+            description=tr("Add pip requirements."),
+            display_current_value=False,
+            default_value_description=tr("No python dependencies"),
+            default=[],
+            hide_default_value_widget=False,
+            window_title=tr("Python Dependencies"),
+        ),
+    },
+    "static_proxy_classes": {
+        "widget_class": ListEditor.__name__,
+        "widget_args": ListEditorArgs(
+            parameter_name="AS-IS",
+            label=tr("Static Proxy"),
             description=tr("Add python static proxy classes."),
             display_current_value=False,
             default_value_description=tr("No python static proxy classes"),
@@ -351,34 +362,43 @@ CONFIGS = {
             window_title=tr("Python Static Proxy Classes"),
         ),
     },
-    "extra_plugin_maven_repositories": {
+    "extract_packages": {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Maven Repositories (Plugin)"),
-            description=tr(
-                "Add extra plugin maven repository urls to settings.gradle script"
-            ),
+            label=tr("Extract Packages"),
+            description=tr("Add python packages will be extracted as separate files."),
+            display_current_value=False,
+            default_value_description=tr("No extract packages"),
+            default=None,
+            hide_default_value_widget=False,
+            window_title=tr("Extract Packages"),
+        ),
+    },
+    "plugin_maven_repos": {
+        "widget_class": ListEditor.__name__,
+        "widget_args": ListEditorArgs(
+            parameter_name="AS-IS",
+            label=tr("Extra Plugin Maven Repositories"),
+            description=tr("Add extra plugin maven repository urls"),
             display_current_value=False,
             default_value_description=tr("No extra plugin maven repositories"),
             default=[],
             hide_default_value_widget=False,
-            window_title=tr("Extra Dependency Repositories (Plugin)"),
+            window_title=tr("Extra Plugin Maven Repositories"),
         ),
     },
-    "extra_dependency_maven_repositories": {
+    "dependency_maven_repos": {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Maven Repositories (Dependency)"),
-            description=tr(
-                "Add extra dependency maven repository urls to settings.gradle script"
-            ),
+            label=tr("Extra Dependency Maven Repositories"),
+            description=tr("Add extra dependency maven repositories"),
             display_current_value=False,
             default_value_description=tr("No extra dependency maven repositories"),
             default=[],
             hide_default_value_widget=False,
-            window_title=tr("Extra Dependency Repositories (Dependency)"),
+            window_title=tr("Extra Dependency Maven Repositories"),
         ),
     },
     "extra_configs": {
@@ -386,7 +406,9 @@ CONFIGS = {
         "widget_args": DictEditorArgs(
             parameter_name="AS-IS",
             label=tr("Extra Configs"),
-            description=tr("Add extra configs can be used in cookiecutter template"),
+            description=tr(
+                "Add extra configs can be accessed in cookiecutter template"
+            ),
             display_current_value=False,
             default_value_description=tr("No extra configs"),
             default=None,

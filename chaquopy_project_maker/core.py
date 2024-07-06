@@ -66,8 +66,8 @@ def make_project(
     java_source_compatibility: str,
     java_target_compatibility: str,
     jvm_target: str,
-    extra_plugin_maven_repositories: List[str],
-    extra_dependency_maven_repositories: List[str],
+    plugin_maven_repos: List[str],
+    dependency_maven_repos: List[str],
     python_version: str,
     python_command: str,
     pyc_src: Literal["None", "False", "True"],
@@ -75,9 +75,11 @@ def make_project(
     pyc_stdlib: Literal["None", "False", "True"],
     python_source_set_name: str,
     python_source_set_dir: str,
-    python_dependencies: List[str],
+    pip_index_url: str,
     pip_extra_index_urls: List[str],
-    python_static_proxies: List[str],
+    pip_requirements: List[str],
+    static_proxy_classes: List[str],
+    extract_packages: List[str],
     extra_configs: Dict[str, Any],
 ):
     project_template = project_template or ""
@@ -107,9 +109,27 @@ def make_project(
             "name": python_source_set_name,
             "dir": python_source_set_dir,
         }
-    extra_plugin_maven_repositories = extra_plugin_maven_repositories or None
-    extra_dependency_maven_repositories = extra_dependency_maven_repositories or None
-    extra_configs = extra_configs or None
+
+    maven_repos = {
+        "plugin": plugin_maven_repos or [],
+        "dependency": dependency_maven_repos or [],
+    }
+
+    pip = {
+        "index_url": pip_index_url or "",
+        "extra_index_urls": pip_extra_index_urls or [],
+        "requirements": pip_requirements or [],
+    }
+
+    static_proxy = {
+        "classes": static_proxy_classes or [],
+    }
+
+    extract_packages = {
+        "packages": extract_packages or [],
+    }
+
+    extra_configs = extra_configs or {}
 
     user_configs = get_user_configs(
         project_name=project_name,
@@ -128,18 +148,17 @@ def make_project(
         java_source_compatibility=java_source_compatibility,
         java_target_compatibility=java_target_compatibility,
         jvm_target=jvm_target,
-        _extra_plugin_maven_repositories=extra_plugin_maven_repositories,
-        _extra_dependency_maven_repositories=extra_dependency_maven_repositories,
         python_version=python_version,
         python_command=python_command,
         pyc_src=pyc_src,
         pyc_pip=pyc_pip,
         pyc_stdlib=pyc_stdlib,
         python_source_set=python_source_set,
-        _python_dependencies=python_dependencies,
-        _pip_extra_index_urls=pip_extra_index_urls,
-        _python_static_proxies=python_static_proxies,
-        _extra_configs=extra_configs,
+        maven_repos=maven_repos,
+        pip=pip,
+        static_proxy=static_proxy,
+        extract_packages=extract_packages,
+        extra_configs=extra_configs,
     )
     ulogging.info(
         tr(

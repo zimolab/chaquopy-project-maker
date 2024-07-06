@@ -43,64 +43,57 @@ EXTRA_DEP_MAVEN_REPOS_ALIYUN = [
 def on_add_aliyun_repositories(ctx: ExecutionContext):
     try:
         # add aliyun's repos to extra_plugin_maven_repositories and extra_dependency_maven_repositories
-        extra_plugin_maven_repositories = (
-            ctx.get_param_value("extra_plugin_maven_repositories") or []
-        )
-        extra_dependency_maven_repositories = (
-            ctx.get_param_value("extra_dependency_maven_repositories") or []
-        )
+        plugin_maven_repos = ctx.get_param_value("plugin_maven_repos") or []
+        dependency_maven_repos = ctx.get_param_value("plugin_maven_repos") or []
         for repo in EXTRA_PLUGIN_MAVEN_REPOS_ALIYUN:
-            if repo not in extra_plugin_maven_repositories:
-                extra_plugin_maven_repositories.append(repo)
+            if repo not in plugin_maven_repos:
+                plugin_maven_repos.append(repo)
         for repo in EXTRA_DEP_MAVEN_REPOS_ALIYUN:
-            if repo not in extra_dependency_maven_repositories:
-                extra_dependency_maven_repositories.append(repo)
-        ctx.set_param_value(
-            "extra_plugin_maven_repositories", extra_plugin_maven_repositories
-        )
-        ctx.set_param_value(
-            "extra_dependency_maven_repositories", extra_dependency_maven_repositories
-        )
+            if repo not in dependency_maven_repos:
+                dependency_maven_repos.append(repo)
+        ctx.set_param_value("plugin_maven_repos", plugin_maven_repos)
+        ctx.set_param_value("dependency_maven_repos", dependency_maven_repos)
     except BaseException as e:
         print(e)
-        ctx.logging_fatal(tr(f"Failed to add aliyun repositories!"))
+        ctx.logging_fatal(
+            tr(f"Failed to add aliyun's maven repositories to the build settings!")
+        )
         ctx.logging_fatal(f"{e}")
         upopup.critical(tr("Failed to add aliyun repositories!\n"), title=tr("Error"))
         return
     else:
-        msg = tr(
-            "Aliyun repositories has been added to extra_plugin_maven_repositories and "
-            "extra_dependency_maven_repositories!"
-        )
+        msg = tr("Aliyun's maven repositories has been added to the build settings!")
         ctx.logging_info(msg)
         upopup.information(msg, title=tr("Success"))
+
+
+# noinspection PyUnusedLocal
+def show_about_popup(ctx: ExecutionContext):
+    upopup.show_about_popup(
+        app_name=APP_NAME,
+        app_description=tr(
+            "Chaquopy Project Maker is a GUI tool to help you create a Chaquopy-integrated Android app project"
+            "easily. It can save you a lot of time from the repeating and tedious work."
+        ),
+        app_copyright=tr("copyright © zimolab. All right reserved"),
+        app_fields={
+            tr("License"): "GPL",
+            tr("Version"): "0.0.1",
+            tr("Author"): "zimolab",
+            tr(
+                "GitHub"
+            ): "<a href='https://github.com/zimolab/chaquopy-project-maker'>chaquopy-project-maker</a>",
+        },
+    ),
 
 
 MENUS = {
     tr("File"): {
         "add_aliyun_repositories": ActionItem(
-            text=tr("Add Aliyun Repositories"),
+            text=tr("Add Aliyun's Maven Repositories"),
             callback=on_add_aliyun_repositories,
         ),
-        "about": ActionItem(
-            text=tr("About"),
-            callback=lambda ctx: upopup.show_about_popup(
-                app_name=APP_NAME,
-                app_description=tr(
-                    "Chaquopy Project Maker is a GUI tool to help you create a Chaquopy-integrated Android app project"
-                    "easily. It can save you a lot of time from the repeating and tedious work."
-                ),
-                app_copyright=tr("copyright © zimolab. All right reserved"),
-                app_fields={
-                    tr("License"): "GPL",
-                    tr("Version"): "0.0.1",
-                    tr("Author"): "zimolab",
-                    tr(
-                        "GitHub"
-                    ): "<a href='https://github.com/zimolab/chaquopy-project-maker'>chaquopy-project-maker</a>",
-                },
-            ),
-        ),
+        "about": ActionItem(text=tr("About"), callback=show_about_popup),
     },
 }
 
