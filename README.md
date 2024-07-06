@@ -10,11 +10,10 @@ This is a tool to help you create a new Chaquopy-based Android Studio project qu
 
 The project configuration process is a little bit complicated and tedious, so I make this tool to make it easier.
 
-This tool uses cookiecutter to do the project creation from a template, and it provides a simple gui to help user to 
-adjust the configs.
+This tool uses cookiecutter to do the project generation, and the default cookiecutter template is distributed as a git 
+submodule which can be found [here](https://github.com/zimolab/HelloChaquopy).
 
-I made a default cookiecutter template, and it is distributed as a git submodule, and you can find it
-[here](https://github.com/zimolab/HelloChaquopy).
+This tool is a GUI program, and it uses [PyGUIAdapter](https://github.com/zimolab/PyGUIAdapter) to make the GUI.
 
 You can also make your own template from the default one. Just don't forget to including all the following configs in 
 your template's `cookiecutter.json`. 
@@ -95,9 +94,17 @@ Note:
 
 ## How to use
 
-Now I provide a pre-built windows executable file, you can download it from the release page.
+A pre-built executable (Using pyinstaller) for Windows is provided currently, you can download it from the release page.
 
-For other platforms, you clone the repository
+The GUI is pretty simple and straightforward.
+
+![app.png](screenshots/app.png)
+
+
+---
+
+
+For other platforms, you can clone the repository and run it from the command line:
 
 ```commandline
 $ git clone --recurse-submodules https://github.com/zimolab/chaquopy-project-maker.git
@@ -114,7 +121,7 @@ $ poetry install
 $ python chaquopy_project_maker/main.py
 ```
 
-Or you can use pyinstaller to package this project into an executable file. You can check the 
-`ChaquopyProjectMaker.spec` for reference.
+Or you can use pyinstaller to make your own executable. Check the [ChaquopyProjectMaker.spec](ChaquopyProjectMaker.spec)
+for reference.
 
 ---
