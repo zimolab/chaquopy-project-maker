@@ -15,8 +15,8 @@ submodule which can be found [here](https://github.com/zimolab/HelloChaquopy).
 
 This tool is a GUI program, and it uses [PyGUIAdapter](https://github.com/zimolab/PyGUIAdapter) to make the GUI.
 
-You can also make your own template from the default one. Just don't forget to including all the following configs in 
-your template's `cookiecutter.json`. 
+You can also make your own cookiecutter template from the default one. Just don't forget to including the following 
+configs in your own template's `cookiecutter.json`. 
 
 ```json
 {
@@ -42,7 +42,7 @@ your template's `cookiecutter.json`.
   "python_product_flavors": "{{ 'py' + cookiecutter.python_version.replace('.', '').strip() }}",
   "python_command": "",
   "pyc_src": [
-    "None",
+    "Auto",
     "False",
     "True"
   ],
@@ -60,35 +60,33 @@ your template's `cookiecutter.json`.
     "name": null,
     "src_dir": null
   },
-  "_python_dependencies": [],
-  "_pip_extra_index_urls": [],
-  "_python_static_proxies": [],
-  "_python_extract_packages": [],
-  "_extra_plugin_maven_repositories": [],
-  "_extra_dependency_maven_repositories": [],
-   "_extra_configs": {},
-  
-    "_copy_without_render": [
+
+  "pip": {
+    "index_url": "",
+    "extra_index_urls": [],
+    "requirements": []
+  },
+
+  "static_proxy": {
+    "classes": []
+  },
+  "extract_packages": {
+    "packages": []
+  },
+
+  "maven_repos": {
+    "plugin": [],
+    "dependency": []
+  },
+  "extra_configs": {},
+
+  "_copy_without_render": [
     "gradlew",
     "gradlew.bat",
     "gradle-wrapper.jar"
   ]
 }
 ```
-
-
-Note: 
-
-- If you don't want to use the GUI, you can also use the default template like a normal cookiecutter template. 
-- The following configs can only be edited in the gui, the cookiecutter cli will ignore them:
-  - _python_dependencies, 
-  - _pip_extra_index_urls, 
-  - _python_static_proxies, 
-  - _python_extract_packages,
-  - _extra_dependency_maven_repositories, 
-  - _extra_dependency_maven_repositories, 
-  - _extra_configs
-
 
 ---
 
