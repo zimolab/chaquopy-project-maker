@@ -43,13 +43,6 @@ GRADLE_WRAPPER_URLS = [
 
 JAVA_VERSIONS = [
     "VERSION_1_8",
-    "VERSION_1_1",
-    "VERSION_1_2",
-    "VERSION_1_3",
-    "VERSION_1_4",
-    "VERSION_1_5",
-    "VERSION_1_6",
-    "VERSION_1_7",
     "VERSION_1_9",
     "VERSION_1_10",
     "VERSION_11",
@@ -68,6 +61,8 @@ JAVA_VERSIONS = [
     "VERSION_24",
     "VERSION_25",
 ]
+
+JVM_TARGETS = [v.replace("VERSION_", "").replace("_", ".") for v in JAVA_VERSIONS]
 
 DEFAULT_JVM_TARGET_VERSION = JAVA_VERSIONS[0].replace("VERSION_", "").replace("_", ".")
 DEFAULT_PYTHON_VERSION = "3.8"
@@ -234,17 +229,18 @@ CONFIGS = {
         "widget_class": ComboBoxEdit.__name__,
         "widget_args": ComboBoxEditArgs(
             parameter_name="AS-IS",
-            label=tr("Java Source Compatibility"),
+            label=tr("Java Target Compatibility"),
             items=JAVA_VERSIONS,
             default=JAVA_VERSIONS[0],
         ),
     },
     "jvm_target": {
-        "widget_class": LineEdit.__name__,
-        "widget_args": LineEditArgs(
+        "widget_class": ComboBoxEdit.__name__,
+        "widget_args": ComboBoxEditArgs(
             parameter_name="AS-IS",
-            label=tr("JVM Target Version"),
-            default=DEFAULT_JVM_TARGET_VERSION,
+            label=tr("JVM Target"),
+            items=JVM_TARGETS,
+            default=JVM_TARGETS[0],
         ),
     },
     "python_version": {
