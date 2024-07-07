@@ -285,7 +285,7 @@ CONFIGS = {
         "widget_class": ComboBox.__name__,
         "widget_args": ComboBoxArgs(
             parameter_name="AS-IS",
-            label=tr("Compile stdlib(pyc)"),
+            label=tr("Compile stdlib (pyc)"),
             items=PYC_OPTIONS,
             default=PYC_OPTIONS[0],
         ),
@@ -294,7 +294,7 @@ CONFIGS = {
         "widget_class": LineEdit.__name__,
         "widget_args": LineEditArgs(
             parameter_name="AS-IS",
-            label=tr("Extra Python Source Set Package"),
+            label=tr("Extra Python Source Set"),
             default_value_description=tr("No extra python source set"),
             default=None,
         ),
@@ -314,7 +314,7 @@ CONFIGS = {
         "widget_args": LineEditArgs(
             parameter_name="AS-IS",
             label=tr("Pip Index URL"),
-            description=tr("Input the pip index url"),
+            description=tr("Set the pip index url"),
             default_value_description=tr("Use default pip index url"),
             default="",
             hide_default_value_widget=False,
@@ -324,7 +324,7 @@ CONFIGS = {
         "widget_class": ListEditor.__name__,
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
-            label=tr("Extra pip Index URLS"),
+            label=tr("Extra Pip Index URLS"),
             description=tr("Add extra pip index urls"),
             display_current_value=False,
             default_value_description=tr("No extra pip index urls"),
@@ -338,7 +338,7 @@ CONFIGS = {
         "widget_args": ListEditorArgs(
             parameter_name="AS-IS",
             label=tr("Pip Requirements"),
-            description=tr("Add pip requirements."),
+            description=tr("Add pip requirements"),
             display_current_value=False,
             default_value_description=tr("No python dependencies"),
             default=[],
